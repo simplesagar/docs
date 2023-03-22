@@ -17,6 +17,9 @@ tags:
     description: Operations on destinations
   - name: Data stores
     description: Operations on data stores
+  - name: Object
+    description: Operations on objects
+  - name: Connection
 paths:
   /link_token:
     post:
@@ -251,13 +254,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  namespaces:
-                    type: array
-                    items:
-                      type: string
-                    example: ["marketing", "analytics", "finance"]
+                $ref: '#/components/schemas/Namespaces'
         '401':
           description: Unauthorized
         '500':
@@ -466,6 +463,14 @@ components:
           example: event_name
         type:
           $ref: '#/components/schemas/FieldType'
+    Namespaces:
+      type: object
+      properties:
+        namespaces:
+          type: array
+          items:
+            type: string
+          example: ["marketing", "analytics", "finance"]
     Source:
       type: object
       properties:
